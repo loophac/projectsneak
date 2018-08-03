@@ -14,7 +14,7 @@ def db():
    geolocation = msg2
    fav = msg3
 
-   cursor.execute('DELETE FROM userData WHERE userid = "+msg1+"')
+   cursor.execute('DELETE FROM userData WHERE rowid NOT IN (SELECT min(rowid) FROM userData GROUP BY userid);')
    
  
    cursor.execute('''INSERT INTO userData(userid, geolocation, fav)
@@ -41,6 +41,3 @@ while True:
    c.close()                # Close the connection
    db()
  
-
-
-

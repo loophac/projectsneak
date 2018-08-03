@@ -14,8 +14,7 @@ conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
 # Creating a new SQLite table with 1 column
-c.execute('CREATE TABLE {tn} ({nf} {ft})'\
-        .format(tn=table_name, nf=new_field, ft=field_type))
+c.execute('CREATE TABLE userData(`userid` INTEGER, `geolocation` INTEGER, fav TEXT)')
 
 
 # Committing changes and closing the connection to the database file

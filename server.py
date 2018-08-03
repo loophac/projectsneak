@@ -7,15 +7,18 @@ s.bind(('127.0.0.1', 12345))        # Bind to the port
 s.listen(5)                 # Now wait for client connection.
 
 def db():
-   conn = sqlite3.connect('db/globaldata.db')
+   conn = sqlite3.connect('globaldata.db')
    db = conn
    cursor = db.cursor()
-   coordinate = msg1
-   username = msg2
-   taste = msg3
+   userid = msg1
+   geolocation = msg2
+   fav = msg3
+
+   cursor.execute('DELETE FROM userData WHERE userid = "+msg1+"')
+   
  
-   cursor.execute('''INSERT INTO coordinates(Coordinates, Username, Taste)
-                  VALUES(?,?,?)''', (coordinate,username,taste))
+   cursor.execute('''INSERT INTO userData(userid, geolocation, fav)
+                  VALUES(?,?,?)''', (geolocation,userid,fav))
  
    print('Data Entered')
  
@@ -38,5 +41,6 @@ while True:
    c.close()                # Close the connection
    db()
  
+
 
 

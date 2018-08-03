@@ -14,7 +14,7 @@ def db():
    geolocation = msg2
    fav = msg3
 
-   cursor.execute('DELETE FROM userData WHERE userid = "+msg1+"')
+   cursor.execute('DELETE FROM userData WHERE rowid NOT IN (SELECT min(rowid) FROM userData GROUP BY userid);')
    
  
    cursor.execute('''INSERT INTO userData(userid, geolocation, fav)
@@ -39,8 +39,8 @@ while True:
    #print data
    #stringdata = data.decode('utf-8')
    c.close()                # Close the connection
-   db()
+  try:
+      db()
+   except:
+      print("Could not connect to database. Run DB_init.py first")
  
-
-
-

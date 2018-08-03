@@ -1,2 +1,2 @@
 # projectsneak
-A repo for a GPS related Android project of mine.
+A GPS related social app.

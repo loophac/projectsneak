@@ -39,5 +39,8 @@ while True:
    #print data
    #stringdata = data.decode('utf-8')
    c.close()                # Close the connection
-   db()
+  try:
+      db()
+   except:
+      print("Could not connect to database. Run DB_init.py first")
  
